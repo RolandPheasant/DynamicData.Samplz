@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicData.Samplz", "DynamicData.Samplz\DynamicData.Samplz.csproj", "{7668AE69-1902-4113-AD6C-363CB3B25A1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectableItems", "SelectableItems\SelectableItems.csproj", "{7668AE69-1902-4113-AD6C-363CB3B25A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

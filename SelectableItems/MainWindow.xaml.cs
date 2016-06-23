@@ -23,6 +23,7 @@ namespace DynamicData.Samplz
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

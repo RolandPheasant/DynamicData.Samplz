@@ -21,14 +21,15 @@ namespace DynamicData.Samplz
             sourceList.AddRange(Enumerable.Range(1, 10).Select(i => new SimpleItem(i)));
 
             //create a shared list of view models
-            var viewModels = sourceList.Connect()
+            var viewModels = sourceList
+                .Connect()
                 .Transform(simpleItem => new SimpleItemViewModel(simpleItem))
                 .Publish();
 
             //filter on items which are selected and populate into an observable collection
             ReadOnlyObservableCollection<SimpleItemViewModel> selected;
             var selectedLoader = viewModels
-                .FilterOnProperty(vm => vm.IsSeleted, vm => vm.IsSeleted)
+                .FilterOnProperty(vm => vm.IsSelected, vm => vm.IsSelected)
                 .Sort(SortExpressionComparer<SimpleItemViewModel>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
                 .Bind(out selected)
@@ -36,16 +37,16 @@ namespace DynamicData.Samplz
             Selected = selected;
 
             //filter on items which are not selected and populate into an observable collection
-            ReadOnlyObservableCollection<SimpleItemViewModel> notSselected;
+            ReadOnlyObservableCollection<SimpleItemViewModel> notSelected;
             var notSelectedLoader = viewModels
-                .FilterOnProperty(vm => vm.IsSeleted, vm => !vm.IsSeleted)
+                .FilterOnProperty(vm => vm.IsSelected, vm => !vm.IsSelected)
                 .Sort(SortExpressionComparer<SimpleItemViewModel>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
-                .Bind(out notSselected)
+                .Bind(out notSelected)
                 .Subscribe();
-            NotSelected = notSselected;
+            NotSelected = notSelected;
 
-            
+
             _cleanUp = new CompositeDisposable(sourceList,  selectedLoader, notSelectedLoader, viewModels.Connect());
         }
 
@@ -57,7 +58,7 @@ namespace DynamicData.Samplz
 
     public class SimpleItemViewModel: AbstractNotifyPropertyChanged
     {
-        private bool _isSeleted;
+        private bool _isSelected;
         public SimpleItem Item { get;  }
 
         public int Number => Item.Id;
@@ -67,10 +68,10 @@ namespace DynamicData.Samplz
             Item = item;
         }
 
-        public bool IsSeleted
+        public bool IsSelected
         {
-            get { return _isSeleted; }
-            set { SetAndRaise(ref _isSeleted, value); }
+            get { return _isSelected; }
+            set { SetAndRaise(ref _isSelected, value); }
         }
     }
 

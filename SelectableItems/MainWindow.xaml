@@ -9,7 +9,7 @@
         Height="350"
         d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
         Title="Selectable Items" >
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type local:SimpleItemViewModel}">
@@ -20,7 +20,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="{Binding Number, StringFormat='Item Number \{0}'}"/>
-                    <CheckBox Grid.Column="1" IsChecked="{Binding IsSeleted}"/>
+                    <CheckBox Grid.Column="1" IsChecked="{Binding IsSelected}"/>
                 </Grid>
             </DataTemplate>
 
@@ -33,7 +33,7 @@
                 <Setter Property="FontWeight" Value="DemiBold"/>
             </Style>
         </ResourceDictionary>
-        
+
 
     </Window.Resources>
     <Grid>
@@ -52,10 +52,10 @@
 
         <TextBlock Text ="These items are not selected"/>
         <ItemsControl  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NotSelected}"/>
-        <TextBlock  Grid.Row="2" Grid.Column="0" Text="{Binding NotSelected.Count, StringFormat='\{0} selected'}"/>
-        
+        <TextBlock  Grid.Row="2" Grid.Column="0" Text="{Binding NotSelected.Count, StringFormat='\{0} not selected'}"/>
+
         <TextBlock Grid.Row="0" Grid.Column="1" Text ="These items are selected"/>
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Selected}"/>
-        <TextBlock  Grid.Row="2" Grid.Column="1"  Text="{Binding Selected.Count, StringFormat='\{0} not selected'}"/>
+        <TextBlock  Grid.Row="2" Grid.Column="1"  Text="{Binding Selected.Count, StringFormat='\{0} selected'}"/>
     </Grid>
 </Window>

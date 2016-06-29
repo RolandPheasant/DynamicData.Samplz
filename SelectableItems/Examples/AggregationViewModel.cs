@@ -43,7 +43,7 @@ namespace DynamicData.Samplz.Examples
                 .FilterOnProperty(vm => vm.IncludeInTotal, vm => vm.IncludeInTotal)
                 .Publish();
 
-            //Do a custom aggregation
+            //Do a custom aggregation (ToCollection() produces a readonly collection of underlying data)
             var sumOfOddNumbers = aggregatable.ToCollection()
                 .Select(collection => collection.Where(i => i.Number%2 == 1).Select(ai => ai.Number).Sum())
                 .Subscribe(sum => SumOfOddNumbers = sum);

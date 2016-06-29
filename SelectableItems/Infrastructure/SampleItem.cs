@@ -6,10 +6,16 @@
         public string Description { get;  }
         public object Content { get;  }
 
-        public SampleItem(string title, object content, string description)
+        public string CodeFileDisplay { get; }
+
+        public string CodeFileUrl { get; }
+
+        public SampleItem(string title, object content, string description, string codeFileDisplay, string codeFileUrl)
         {
             Title = title;
             Description = description;
+            CodeFileDisplay = codeFileDisplay;
+            CodeFileUrl = codeFileUrl;
             Content = content;
         }
     }

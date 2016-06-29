@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:examples="clr-namespace:DynamicData.Samplz.Examples"
         xmlns:infrastructure="clr-namespace:DynamicData.Samplz.Infrastructure"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
@@ -34,12 +33,11 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <!---->
     <Grid>
-             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
           <materialDesign:ColorZone  Mode="PrimaryMid"  Grid.ColumnSpan="2"
                                VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -48,10 +46,8 @@
                                Style="{DynamicResource MaterialDesignHeadlineTextBlock}"
                                Text="Dynamic Data Getting Started Examples"/>
             </materialDesign:ColorZone>
-
     
         <Grid Grid.Row="1" Margin="8 4 8 4">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -65,7 +61,7 @@
              <TextBlock Margin="4 4 4 0" Grid.Column="0"
                            TextWrapping="Wrap"
                            Style="{DynamicResource MaterialDesignSubheadingTextBlock}"
-                           Text="Select Example"/>
+                           Text="Select Example:"/>
             
              <TextBlock Margin="4 4 4 0" Grid.Row="0" Grid.Column="1"
                            TextWrapping="Wrap"
@@ -78,31 +74,44 @@
                      ItemsSource="{Binding Items}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Title}" 
-                                   Margin="4 0 4 0"
-                                  />
+                        <TextBlock Text="{Binding Title}" Margin="4 0 4 0"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
+            <Grid  Grid.Row="1" Grid.Column="1" Margin="0 0 6 4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <materialDesign:Transitioner Grid.Row="1" Grid.Column="1" Margin="0 0 6 4"
+                <materialDesign:Transitioner
                                     ItemsSource="{Binding Items}"
                                     SelectedIndex="{Binding SelectedIndex, ElementName=Selector}">
 
-            <materialDesign:Transitioner.ItemTemplate>
-                <DataTemplate DataType="{x:Type infrastructure:SampleItem}">
-                    <materialDesign:Card Margin="4">
-                        <ContentControl  Content="{Binding Content}"/>
-                    </materialDesign:Card>
-                </DataTemplate>
+                    <materialDesign:Transitioner.ItemTemplate>
+                        <DataTemplate DataType="{x:Type infrastructure:SampleItem}">
+                            <materialDesign:Card Margin="4">
+                                <ContentControl  Content="{Binding Content}"/>
+                            </materialDesign:Card>
+                        </DataTemplate>
 
-            </materialDesign:Transitioner.ItemTemplate>
-        </materialDesign:Transitioner>
+                    </materialDesign:Transitioner.ItemTemplate>
+                </materialDesign:Transitioner>
+
+                <TextBlock  Grid.Row="1"
+                             Margin="4 0 0 0"
+                            DataContext="{Binding SelectedItem, ElementName=Selector}">
+                        <Run>Click to view code</Run>
+                        <Hyperlink  NavigateUri="{Binding CodeFileUrl}" infrastructure:HyperlinkExtensions.IsExternal="true">
+                            <TextBlock Text="{Binding CodeFileDisplay}"></TextBlock>
+                        </Hyperlink>
+                    </TextBlock>
+            </Grid>
+
+
         </Grid>
-        
-    </Grid>
-    <!---->
+   </Grid>
 
 </controls:MetroWindow>
 

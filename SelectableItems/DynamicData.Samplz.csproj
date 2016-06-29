@@ -122,6 +122,7 @@
     <Compile Include="Examples\SelectableItemsView.xaml.cs">
       <DependentUpon>SelectableItemsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\HyperlinkExtensions.cs" />
     <Compile Include="Infrastructure\SampleItem.cs" />
     <Compile Include="Infrastructure\SampleItemCollection.cs" />
     <Compile Include="MainWindow.xaml.cs">

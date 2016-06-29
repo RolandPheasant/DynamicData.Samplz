@@ -5,16 +5,16 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DynamicData.Binding;
 
-namespace DynamicData.Samplz
+namespace DynamicData.Samplz.Examples
 {
-    public class MainWindowViewModel: IDisposable
+    public class SelectableItemsViewModel: IDisposable
     {
         private readonly IDisposable _cleanUp;
 
         public ReadOnlyObservableCollection<SimpleItemViewModel> Selected { get; }
         public ReadOnlyObservableCollection<SimpleItemViewModel> NotSelected { get; }
 
-        public MainWindowViewModel()
+        public SelectableItemsViewModel()
         {
             var sourceList = new SourceList<SimpleItem>();
 

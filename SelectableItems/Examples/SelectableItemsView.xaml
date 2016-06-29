@@ -16,7 +16,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding Number, StringFormat='Item Number \{0}'}"/>
-                <CheckBox Grid.Column="1" IsChecked="{Binding IsSeleted}"/>
+                <CheckBox Grid.Column="1" IsChecked="{Binding IsSelected}"/>
             </Grid>
         </DataTemplate>
 
@@ -44,7 +44,7 @@
         <TextBlock   Text="{Binding NotSelected.Count, StringFormat='\{0} items Not selected'}"/>
         <ItemsControl  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NotSelected}"/>
 
-        <TextBlock   Grid.Row="0" Grid.Column="1" Text="{Binding Selected.Count, StringFormat='\{0} items Not selected'}"/>
+        <TextBlock   Grid.Row="0" Grid.Column="1" Text="{Binding Selected.Count, StringFormat='\{0} items selected'}"/>
         <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Selected}"/>
     </Grid>
 </UserControl>

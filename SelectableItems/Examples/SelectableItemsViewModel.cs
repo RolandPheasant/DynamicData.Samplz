@@ -33,7 +33,10 @@ namespace DynamicData.Samplz.Examples
                 .Sort(SortExpressionComparer<SimpleItemViewModel>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
                 .Bind(out selected)
-                .Subscribe();
+                .Subscribe(x=> {}, ex =>
+                {
+                    Console.WriteLine(ex);
+                });
             Selected = selected;
 
             //filter on items which are not selected and populate into an observable collection

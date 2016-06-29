@@ -68,10 +68,8 @@
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding  Count}"/>
             <TextBlock Grid.Row="5" Grid.Column="0" Text="Sum of odd numbers:"/>
             <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding  SumOfOddNumbers}"/>
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Average:"/>
-            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding Avg}"/>
-            <TextBlock Grid.Row="7" Grid.Column="0" Text="Standard Deviation:"/>
-            <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding StdDev}"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Standard Deviation:"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding StdDev}"/>
         </Grid>
 
     </Grid>

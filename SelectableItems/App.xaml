@@ -23,9 +23,13 @@
             <DataTemplate DataType="{x:Type examples:SelectableItemsViewModel}">
                 <examples:SelectableItemsView/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type examples:AggregationViewModel}">
-                <examples:AggregationView/>
+                <examples:AggregationView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type examples:FilterViewModel}">
+                <examples:FilterView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

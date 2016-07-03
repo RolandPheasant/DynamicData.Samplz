@@ -7,7 +7,7 @@
         xmlns:infrastructure="clr-namespace:DynamicData.Samplz.Infrastructure"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Width="550"
+        Width="575"
         Height="440"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -108,8 +108,6 @@
                         </Hyperlink>
                     </TextBlock>
             </Grid>
-
-
         </Grid>
    </Grid>
 

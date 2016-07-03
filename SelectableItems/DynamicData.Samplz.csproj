@@ -103,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Examples\FilterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Examples\SelectableItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +123,10 @@
       <DependentUpon>AggregationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Examples\AggregationViewModel.cs" />
+    <Compile Include="Examples\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Examples\FilterViewModel.cs" />
     <Compile Include="Examples\SelectableItemsView.xaml.cs">
       <DependentUpon>SelectableItemsView.xaml</DependentUpon>
     </Compile>

@@ -11,8 +11,9 @@ namespace DynamicData.Samplz.Examples
     public class AggregationViewModel : AbstractNotifyPropertyChanged, IDisposable
     {
         private readonly IDisposable _cleanUp;
+        private readonly ReadOnlyObservableCollection<AggregationItem> _items;
+        public ReadOnlyObservableCollection<AggregationItem> Items => _items;
 
-        public ReadOnlyObservableCollection<AggregationItem> Items { get; }
 
         private int _count;
         private int _max;
@@ -30,13 +31,12 @@ namespace DynamicData.Samplz.Examples
             sourceList.AddRange(Enumerable.Range(1, 15).Select(i => new AggregationItem(i)));
 
             //Load items to display to user and allow them to include items or not
-            ReadOnlyObservableCollection<AggregationItem> items;
+         
             var listLoader = sourceList.Connect()
                 .Sort(SortExpressionComparer<AggregationItem>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
-                .Bind(out items)
+                .Bind(out _items)
                 .Subscribe();
-            Items = items;
 
             // share the connection because we are doing multiple aggregations
             var aggregatable = sourceList.Connect()

@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="DynamicData.Samplz.Examples.FilterObservableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DynamicData.Samplz.Examples"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance local:FilterObservableViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type ItemsControl}">
+                <Setter Property="Margin" Value="8" />
+            </Style>
+
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="8 4 0 2" />
+                <Setter Property="FontWeight" Value="DemiBold" />
+            </Style>
+
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Setter Property="Width" Value="18" />
+                <Setter Property="Height" Value="18" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+         
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.65*" />
+            <ColumnDefinition Width="0.35*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding AllPlayers.Count, StringFormat='\{0} footballers available'}" />
+        <ScrollViewer Grid.Row="1" 
+                      Grid.Column="0"
+                      HorizontalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto"
+                      CanContentScroll="True">
+            
+            <ItemsControl ItemsSource="{Binding AllPlayers}">
+                <ItemsControl.ItemTemplate>
+
+                    <DataTemplate  DataType="{x:Type local:FootballPlayer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Name}" Margin="4 0 0 0" />
+                            <Button Grid.Column="1" Command="{Binding IncludeCommand}">
+                                <materialDesign:PackIcon Kind="Plus" Width="14" Height="14"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2"/>
+                    </ItemsPanelTemplate>
+
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding MyTeam.Count, StringFormat='\{0} players in my squad'}" />
+        <ItemsControl Grid.Row="1" 
+                      Grid.Column="1" 
+                      ItemsSource="{Binding MyTeam}">
+            <ItemsControl.ItemTemplate>
+
+                <DataTemplate DataType="{x:Type local:FootballPlayer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Name}" />
+                        <Button Grid.Column="1" 
+                            Command="{Binding ExcludeCommand}">
+                            <materialDesign:PackIcon Kind="Minus" Width="14" Height="14"/>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

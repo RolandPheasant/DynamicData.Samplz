@@ -10,9 +10,10 @@ namespace DynamicData.Samplz.Examples
     public class SelectableItemsViewModel: IDisposable
     {
         private readonly IDisposable _cleanUp;
-
-        public ReadOnlyObservableCollection<SimpleItemViewModel> Selected { get; }
-        public ReadOnlyObservableCollection<SimpleItemViewModel> NotSelected { get; }
+        private readonly ReadOnlyObservableCollection<SimpleItemViewModel> _selected;
+        private readonly ReadOnlyObservableCollection<SimpleItemViewModel> _notSelected;
+        public ReadOnlyObservableCollection<SimpleItemViewModel> Selected => _selected;
+        public ReadOnlyObservableCollection<SimpleItemViewModel> NotSelected => _notSelected;
 
         public SelectableItemsViewModel()
         {
@@ -27,29 +28,22 @@ namespace DynamicData.Samplz.Examples
                 .Publish();
 
             //filter on items which are selected and populate into an observable collection
-            ReadOnlyObservableCollection<SimpleItemViewModel> selected;
+
             var selectedLoader = viewModels
                 .FilterOnProperty(vm => vm.IsSelected, vm => vm.IsSelected)
                 .Sort(SortExpressionComparer<SimpleItemViewModel>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
-                .Bind(out selected)
-                .Subscribe(x=> {}, ex =>
-                {
-                    Console.WriteLine(ex);
-                });
-            Selected = selected;
+                .Bind(out _selected)
+                .Subscribe();
 
             //filter on items which are not selected and populate into an observable collection
-            ReadOnlyObservableCollection<SimpleItemViewModel> notSelected;
             var notSelectedLoader = viewModels
                 .FilterOnProperty(vm => vm.IsSelected, vm => !vm.IsSelected)
                 .Sort(SortExpressionComparer<SimpleItemViewModel>.Ascending(vm => vm.Number))
                 .ObserveOnDispatcher()
-                .Bind(out notSelected)
+                .Bind(out _notSelected)
                 .Subscribe();
-            NotSelected = notSelected;
-
-
+            
             _cleanUp = new CompositeDisposable(sourceList,  selectedLoader, notSelectedLoader, viewModels.Connect());
         }
 

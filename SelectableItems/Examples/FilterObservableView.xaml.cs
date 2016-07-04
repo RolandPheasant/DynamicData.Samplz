@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DynamicData.Samplz.Examples
 {
     /// <summary>
-    /// Interaction logic for FilterView.xaml
+    /// Interaction logic for FilterObservableView.xaml
     /// </summary>
-    public partial class FilterView : UserControl
+    public partial class FilterObservableView : UserControl
     {
-        public FilterView()
+        public FilterObservableView()
         {
             InitializeComponent();
         }

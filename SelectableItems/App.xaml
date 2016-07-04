@@ -28,8 +28,8 @@
                 <examples:AggregationView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type examples:FilterViewModel}">
-                <examples:FilterView/>
+            <DataTemplate DataType="{x:Type examples:FilterObservableViewModel}">
+                <examples:FilterObservableView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

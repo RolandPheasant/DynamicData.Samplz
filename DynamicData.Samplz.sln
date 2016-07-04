@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicData.Samplz", "SelectableItems\DynamicData.Samplz.csproj", "{7668AE69-1902-4113-AD6C-363CB3B25A1F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".other", ".other", "{0D2CD10B-BE1E-459D-B7FE-0C2FEA77B2D9}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicData.Samplz", "DynamicData.Samplz\DynamicData.Samplz.csproj", "{7668AE69-1902-4113-AD6C-363CB3B25A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

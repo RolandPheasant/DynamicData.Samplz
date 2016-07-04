@@ -15,17 +15,17 @@ namespace DynamicData.Samplz.Infrastructure
                 new SampleItem("Selectable Items", new SelectableItemsViewModel(),
                         "Filter on an object which implements INotifyPropertyChanged",
                         "SelectableItemsViewModel.cs",
-                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/SelectableItems/Examples/SelectableItemsViewModel.cs"),
+                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/SelectableItemsViewModel.cs"),
 
                 new SampleItem("Aggregations", new AggregationViewModel(),
                         "Aggregate over a collection which is filtered on a property"
                         ,"AggregationViewModel.cs"
-                        ,"https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/SelectableItems/Examples/AggregationViewModel.cs"),
+                        ,"https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/AggregationViewModel.cs"),
 
                new SampleItem("Filter An Observable", new  FilterObservableViewModel(), 
                         "Filter observable which is a property of an object",
                         "FilterObservableViewModel.cs",
-                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/SelectableItems/Examples/FilterObservableViewModel.cs"),
+                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/FilterObservableViewModel.cs"),
 
             };
         }

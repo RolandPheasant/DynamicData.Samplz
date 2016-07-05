@@ -15,11 +15,11 @@ namespace DynamicData.Samplz.Examples
     {
         private readonly IDisposable _cleanUp;
 
-        private readonly ReadOnlyObservableCollection<FootballPlayer> _allPlayers;
+        private readonly ReadOnlyObservableCollection<FootballPlayer> _availablePlayers;
 
         private readonly ReadOnlyObservableCollection<FootballPlayer> _myTeamPeople;
 
-        public ReadOnlyObservableCollection<FootballPlayer> AllPlayers => _allPlayers;
+        public ReadOnlyObservableCollection<FootballPlayer> AvailablePlayers => _availablePlayers;
         public ReadOnlyObservableCollection<FootballPlayer> MyTeam => _myTeamPeople;
 
         public FilterObservableViewModel()
@@ -27,13 +27,14 @@ namespace DynamicData.Samplz.Examples
             var people = CreateFootballerList();
             var sharedDataSoure = people.Connect().Publish();
 
-            //Load all people and populate observable collection
+            //Load available players
             var allPeopleLoader = sharedDataSoure
+                .FilterOnObservable(person => person.IncludedChanged, included => !included)
                 .ObserveOnDispatcher()
-                .Bind(out _allPlayers)
+                .Bind(out _availablePlayers)
                 .Subscribe();
 
-            //filter on the included / excluded observable
+            //oad selected players
             var includedPeopleLoader = sharedDataSoure
                 .FilterOnObservable(person => person.IncludedChanged, included => included)
                 .ObserveOnDispatcher()
@@ -84,7 +85,6 @@ namespace DynamicData.Samplz.Examples
         {
             _cleanUp.Dispose();
         }
-
     }
 
     public class FootballPlayer
@@ -96,7 +96,8 @@ namespace DynamicData.Samplz.Examples
 
         public FootballPlayer(string name )
         {
-            ISubject<bool> includeChanged = new Subject<bool>();
+            var includeChanged = new BehaviorSubject<bool>(false);
+
             Name = name;
             IncludeCommand = new Command(() => includeChanged.OnNext(true));
             ExcludeCommand = new Command(() => includeChanged.OnNext(false));
@@ -126,6 +127,7 @@ namespace DynamicData.Samplz.Examples
                             var isMatched = predicate(value);
                             if (isMatched)
                             {
+                                //prevent duplicates with contains check - otherwise use a source cache
                                 if (!resultList.Items.Contains(item))
                                     resultList.Add(item);
                             }

@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance local:FilterObservableViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             Height="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
 
@@ -44,7 +44,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding AllPlayers.Count, StringFormat='\{0} footballers available'}" />
+        <TextBlock Text="{Binding AvailablePlayers.Count, StringFormat='\{0} footballers available'}" />
         <ScrollViewer Grid.Row="1" 
                       Grid.Column="0"
                       HorizontalAlignment="Stretch"
@@ -52,11 +52,11 @@
                       VerticalScrollBarVisibility="Auto"
                       CanContentScroll="True">
             
-            <ItemsControl ItemsSource="{Binding AllPlayers}">
+            <ItemsControl ItemsSource="{Binding AvailablePlayers}">
                 <ItemsControl.ItemTemplate>
 
                     <DataTemplate  DataType="{x:Type local:FootballPlayer}">
-                        <Grid>
+                        <Grid VerticalAlignment="Top">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
@@ -83,7 +83,9 @@
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding MyTeam.Count, StringFormat='\{0} players in my squad'}" />
         <ItemsControl Grid.Row="1" 
                       Grid.Column="1" 
-                      ItemsSource="{Binding MyTeam}">
+                      ItemsSource="{Binding MyTeam}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ItemsControl.ItemTemplate>
 
                 <DataTemplate DataType="{x:Type local:FootballPlayer}">

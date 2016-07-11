@@ -33,10 +33,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.65*" />
-            <ColumnDefinition Width="0.35*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -45,40 +45,30 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding AvailablePlayers.Count, StringFormat='\{0} footballers available'}" />
-        <ScrollViewer Grid.Row="1" 
-                      Grid.Column="0"
-                      HorizontalAlignment="Stretch"
-                      HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Auto"
-                      CanContentScroll="True">
-            
-            <ItemsControl ItemsSource="{Binding AvailablePlayers}">
-                <ItemsControl.ItemTemplate>
 
-                    <DataTemplate  DataType="{x:Type local:FootballPlayer}">
-                        <Grid VerticalAlignment="Top">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+        <ItemsControl Grid.Row="1" 
+                      Grid.Column="0" 
+                      ItemsSource="{Binding AvailablePlayers}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ItemsControl.ItemTemplate>
 
-                            <TextBlock Text="{Binding Name}" Margin="4 0 0 0" />
-                            <Button Grid.Column="1" Command="{Binding IncludeCommand}">
-                                <materialDesign:PackIcon Kind="Plus" Width="14" Height="14"/>
-                            </Button>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="2"/>
-                    </ItemsPanelTemplate>
+                <DataTemplate  DataType="{x:Type local:FootballPlayer}">
+                    <Grid VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
+                        <TextBlock Text="{Binding Name}" Margin="4 0 0 0" />
+                        <Button Grid.Column="1" Command="{Binding IncludeCommand}">
+                            <materialDesign:PackIcon Kind="Plus" Width="14" Height="14"/>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
 
+        </ItemsControl>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding MyTeam.Count, StringFormat='\{0} players in my squad'}" />
         <ItemsControl Grid.Row="1" 

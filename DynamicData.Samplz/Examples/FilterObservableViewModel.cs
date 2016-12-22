@@ -5,8 +5,6 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Windows.Input;
-using DynamicData;
-using DynamicData.Binding;
 using DynamicData.Samplz.Infrastructure;
 
 namespace DynamicData.Samplz.Examples
@@ -40,7 +38,7 @@ namespace DynamicData.Samplz.Examples
                 .ObserveOnDispatcher()
                 .Bind(out _myTeamPeople)
                 .Subscribe();
-
+            
             _cleanUp = new CompositeDisposable(people, allPeopleLoader, includedPeopleLoader, sharedDataSoure.Connect());
         }
 

@@ -27,6 +27,11 @@ namespace DynamicData.Samplz.Infrastructure
                         "FilterObservableViewModel.cs",
                         "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/FilterObservableViewModel.cs"),
 
+                new SampleItem("One to many join", new  JoinManyViewModel(), 
+                        "Join two observable caches which have a one to many relation",
+                        "JoinManyViewModel.cs",
+                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/JoinManyViewModel.cs"),
+
             };
         }
     }

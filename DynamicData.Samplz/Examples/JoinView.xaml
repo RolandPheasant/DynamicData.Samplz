@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="DynamicData.Samplz.Examples.JoinManyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:DynamicData.Samplz.Domain"
+             xmlns:examples="clr-namespace:DynamicData.Samplz.Examples"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance examples:JoinManyViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                <Setter Property="Width" Value="18" />
+                <Setter Property="Height" Value="18" />
+                <Setter Property="Padding" Value="0" />
+            </Style>
+
+            <DataTemplate DataType="{x:Type domain:RelationEditor}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <materialDesign:ColorZone Mode="PrimaryMid">
+                        <TextBlock Margin="8" 
+                                   Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                                   Text="{Binding Name, StringFormat='Select relations for {0}'}"/>
+                    </materialDesign:ColorZone>
+                  
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Children}" Height="260" SelectionMode="Multiple">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="materialDesign:DialogHost.CloseDialogCommand"
+                                Content="I'm Done">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+        
+     </UserControl.Resources>
+    
+     <Grid>
+         <materialDesign:DialogHost>
+            <DataGrid ItemsSource="{Binding Data}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="Auto" Binding="{Binding  Parent.Name}" />
+                    <DataGridTextColumn Header="Age" Width="Auto" Binding="{Binding Parent.Age}" />
+                    <DataGridTextColumn Header="Children"  Binding="{Binding  ChildrenNames}" />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type domain:ParentWithChildrenProxy}">
+                                <Button Command="{Binding EditCommand}">
+                                    <materialDesign:PackIcon Kind="TableEdit" Width="14" Height="14"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

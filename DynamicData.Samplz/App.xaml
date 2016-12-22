@@ -1,7 +1,6 @@
 ﻿<Application x:Class="DynamicData.Samplz.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DynamicData.Samplz"
              xmlns:examples="clr-namespace:DynamicData.Samplz.Examples"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -30,6 +29,10 @@
 
             <DataTemplate DataType="{x:Type examples:FilterObservableViewModel}">
                 <examples:FilterObservableView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type examples:JoinManyViewModel}">
+                <examples:JoinManyView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

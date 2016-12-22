@@ -30,7 +30,7 @@ namespace DynamicData.Samplz.Infrastructure
                 new SampleItem("One to many join", new  JoinManyViewModel(), 
                         "Join two observable caches which have a one to many relation",
                         "JoinManyViewModel.cs",
-                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/JoinManyViewModel.cs"),
+                        "https://github.com/RolandPheasant/DynamicData.Samplz/blob/master/DynamicData.Samplz/Examples/JoinViewModel.cs"),
 
             };
         }

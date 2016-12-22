@@ -43,8 +43,10 @@ namespace DynamicData.Samplz.Examples
 
         private async Task EditPerson(ParentWithChildren parentWithChildren)
         {
-            var editor = new RelationEditor(parentWithChildren,_people.Items.ToArray());
+            //in a real world app you would pass _people in and allow the selectable items source to dynamically change
+            var editor = new RelationEditor(parentWithChildren, _people.Items.ToArray());
 
+            //TODO: Investigate why selectable state is being held onto ny the Dialog
             await DialogHost.Show(editor, (object sender, DialogClosingEventArgs eventArgs) =>
             {
                 //use the .Edit method as it is more efficient when apply multiple changes
@@ -72,7 +74,6 @@ namespace DynamicData.Samplz.Examples
             var relations = new[]
             {
                 new Relation(people[1], people[2]),
-                new Relation(people[1], people[3]),
                 new Relation(people[1], people[8]),
                 new Relation(people[2], people[2]),
                 new Relation(people[5], people[6]),

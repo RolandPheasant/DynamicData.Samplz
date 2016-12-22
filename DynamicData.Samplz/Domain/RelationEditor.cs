@@ -7,6 +7,7 @@ namespace DynamicData.Samplz.Domain
 {
     public class RelationEditor: AbstractNotifyPropertyChanged
     {
+
         public string Name { get; }
 
         public ObservableCollection<SelectablePerson> Children { get; }

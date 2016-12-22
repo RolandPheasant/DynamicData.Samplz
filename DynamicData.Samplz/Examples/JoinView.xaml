@@ -25,7 +25,7 @@
                 <Setter Property="Padding" Value="0" />
             </Style>
 
-            <DataTemplate DataType="{x:Type domain:RelationEditor}">
+            <DataTemplate DataType="{x:Type domain:RelationEditor}" x:Shared="False">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -66,13 +66,14 @@
                       IsReadOnly="True"
                       CanUserSortColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Width="Auto" Binding="{Binding  Parent.Name}" />
-                    <DataGridTextColumn Header="Age" Width="Auto" Binding="{Binding Parent.Age}" />
-                    <DataGridTextColumn Header="Children"  Binding="{Binding  ChildrenNames}" />
+                    <DataGridTextColumn Header="Name" Width="Auto" Binding="{Binding  Parent.Name, Mode=OneTime}" />
+                    <DataGridTextColumn Header="Age" Width="Auto" Binding="{Binding Parent.Age ,Mode=OneTime}" />
+                    <DataGridTextColumn Header="#" Width="Auto" Binding="{Binding ChildrenCount, Mode=OneTime}" />
+                    <DataGridTextColumn Header="Children" Width="150" Binding="{Binding  ChildrenNames}" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type domain:ParentWithChildrenProxy}">
-                                <Button Command="{Binding EditCommand}">
+                                <Button Command="{Binding EditCommand, Mode=OneTime}" ToolTip="Edit children">
                                     <materialDesign:PackIcon Kind="TableEdit" Width="14" Height="14"/>
                                 </Button>
                             </DataTemplate>
